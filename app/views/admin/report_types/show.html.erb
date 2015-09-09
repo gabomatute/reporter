@@ -1,0 +1,43 @@
+<p>
+  <strong>Name:</strong>
+  <%= @report_type.name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @report_type.category.name %>
+</p>
+
+<p>
+  <strong>Database:</strong>
+  <%= @report_type.database.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @report_type.description %>
+</p>
+
+<% @report_type.fields.each do |field| %>
+  <p>
+    <strong> Name </strong>
+    <%= field.name %>
+  </p>
+    <strong> Field Type </strong>
+    <%= field.field_type.name %>
+  </p>
+    <strong> Required </strong>
+    <%= field.required %>
+  </p>
+    <strong> Placeholder </strong>
+    <%= field.placeholder %>
+  </p>
+<% end %>
+
+<p>
+  <strong>SQL:</strong>
+  <%= @report_type.sql %>
+</p>
+
+<%= link_to 'Edit', edit_admin_report_type_path(@report_type) %> |
+<%= link_to 'Back', admin_report_types_path %>

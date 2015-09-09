@@ -32,6 +32,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use Cocoon to handle nested forms easier. Read more: https://github.com/nathanvda/cocoon
+gem 'cocoon'
+
+# Use Devise for user authentication. Read more: https://github.com/plataformatec/devise
+gem 'devise'
+
+# Use attr_encrypted to encrypt database authentication. Read more: https://github.com/attr-encrypted/attr_encrypted
+gem 'attr_encrypted'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

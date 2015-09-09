@@ -1,0 +1,45 @@
+<%= form_for [:admin, @database] do |f| %>
+  <% if @database.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@database.errors.count, "error") %> prohibited this database from being saved:</h2>
+
+      <ul>
+      <% @database.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :database %><br>
+    <%= f.text_field :database %>
+  </div>
+  <div class="field">
+    <%= f.label :adapter %><br>
+    <%= f.text_field :adapter %>
+  </div>
+  <div class="field">
+    <%= f.label :host %><br>
+    <%= f.text_field :host %>
+  </div>
+  <div class="field">
+    <%= f.label :port %><br>
+    <%= f.text_field :port %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
