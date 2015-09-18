@@ -14,10 +14,14 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
 
-    if @report.generate
-      render :show
-    else
-      render :new
+    respond_to do |format|
+      if @report.generate
+        format.html { render :show }
+        format.csv { send_data @report.to_csv, filename: "Report - #{@report.report_type.name}", type: :csv }
+      else
+        format.html { render :new }
+        format.csv { head :unprocessable_entity }
+      end
     end
   end
 

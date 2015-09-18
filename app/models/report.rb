@@ -47,6 +47,13 @@ class Report
     report_type.sql.gsub(/\?\?.*?\?\?/, replacements)
   end
 
+  def to_csv(options = {})
+    options.merge! headers: data.columns, write_headers: true
+    CSV.generate(options) do |csv|
+      data.rows.each { |row| csv << row }
+    end
+  end
+
   private
     def fields_correspond
       if field_inputs.map { |field_input| field_input.field } != report_type.fields

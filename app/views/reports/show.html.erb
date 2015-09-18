@@ -27,4 +27,5 @@
 	</tbody>
 </table>
 
-<%= link_to 'Back', select_reports_path %>
+<%= link_to 'Back', select_reports_path %> |
+<%= link_to 'CSV', reports_path(report: @report.serializable_hash, format: :csv), method: :post %>
