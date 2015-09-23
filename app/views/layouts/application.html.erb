@@ -8,6 +8,11 @@
 </head>
 <body>
 
+<% if user_signed_in? %>
+  <%= "#{current_user.name.titlecase} (#{current_user.email})" %>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 <p id="alert"><%= alert %></p>
 
