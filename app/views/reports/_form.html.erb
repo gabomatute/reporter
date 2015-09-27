@@ -16,7 +16,7 @@
             <%= ff.hidden_field :field_id %>
             <div class="form-group">
               <%= ff.label :input, field_input.field.name %>
-              <%= ff.text_field :input, class: "form-control" %>
+              <%= tailored_field ff, field_input %>
             </div>
           <% end %>
         <% end %>
