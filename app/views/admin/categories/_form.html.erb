@@ -1,21 +1,38 @@
 <%= form_for [:admin, @category] do |f| %>
-  <% if @category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+  <div class="col-md-4">
+    <div class="box">
+      <div class="box-body">
+        <div class="form-group">
+          <%= f.label :name %><br>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= f.submit class: "form-control btn btn-success" %>
+        </div>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+  </div>
 
-      <ul>
-      <% @category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @category.errors.any? %>
+    <div class="col-md-8">
+      <div class="box box-solid box-danger">
+        <div class="box-header with-border">
+          <h3 class="box-title"><%= @category.errors.count > 1 ? "Errors" : "Error" %> to save category </h3>
+          <div class="box-tools pull-right">
+            <!-- Buttons, labels, and many other things can be placed here! -->
+            <!-- Here is a label for example -->
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          </div><!-- /.box-tools -->
+        </div><!-- /.box-header -->
+        <div class="box-body">
+          <ul>
+            <% @category.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div><!-- /.box-body -->
+      </div><!-- /.box -->
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

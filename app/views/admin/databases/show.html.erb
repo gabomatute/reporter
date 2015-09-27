@@ -1,32 +1,40 @@
-<p>
-  <strong>Name:</strong>
-  <%= @database.name %>
-</p>
+<% content_for :header do %>
+  <section class="content-header">
+    <h1>
+      Database
+      <small><%= @database.name %></small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/admin"><i class="fa fa-home"></i></a></li>
+      <li><%= link_to "Databases", admin_databases_path %></li>
+      <li class="active">Show</li>
+    </ol>
+  </section>
+<% end %>
 
-<p>
-  <strong>Database:</strong>
-  <%= @database.database %>
-</p>
-
-<p>
-  <strong>Adapter:</strong>
-  <%= @database.adapter %>
-</p>
-
-<p>
-  <strong>Host:</strong>
-  <%= @database.host %>
-</p>
-
-<p>
-  <strong>Port:</strong>
-  <%= @database.port %>
-</p>
-
-<p>
-  <strong>Username:</strong>
-  <%= @database.username %>
-</p>
-
-<%= link_to 'Edit', edit_admin_database_path(@database) %> |
-<%= link_to 'Back', admin_databases_path %>
+<div class="col-md-4">
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Details</h3>
+      <div class="box-tools">
+        <!-- Buttons, labels, and many other things can be placed here! -->
+        <!-- Here is a label for example -->
+        <%= link_to edit_admin_database_path(@database) do %>
+          <button class="btn btn-box-tool">
+            <i class="fa fa-edit default"></i>
+          </button>
+        <% end %>
+      </div><!-- /.box-tools -->
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+      <table class="table table-bordered table-hover">
+        <% [:name, :database, :adapter, :host, :port, :username].each do |attribute| %>
+          <tr>
+            <th><%= attribute.to_s.humanize %></th>
+            <td><%= @database.send(attribute) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
+</div>
