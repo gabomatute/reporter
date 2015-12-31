@@ -1,0 +1,41 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
+      <!-- Optionally, you can add icons to the links -->
+      <li class="active"><a href="/"><i class='fa fa-home'></i> <span>Reporter</span></a></li>
+      <li><a href="http://evolution3.eirplus.com">
+        <i class='fa fa-external-link'></i> <span>Evolution 3</span>
+      </a></li>
+      <li><a href="http://pagos.eirplus.com">
+        <i class='fa fa-external-link'></i> <span>Pagos</span>
+      </a></li>
+      <!-- If user is an admin show admin links -->
+      <% if user_signed_in? && current_user.admin %>
+        <li class="treeview">
+          <a href="#"><i class='fa fa-gear'></i> <span>Admin</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+              <li>
+                <%= link_to admin_report_types_path do %>
+                  <i class="fa fa-circle-o"></i> Report Types
+                <% end %>
+              </li>
+              <li>
+                <%= link_to admin_databases_path do %>
+                  <i class="fa fa-circle-o"></i> Databases
+                <% end %>
+              </li>
+              <li>
+                <%= link_to admin_categories_path do %>
+                  <i class="fa fa-circle-o"></i> Categories
+                <% end %>
+              </li>
+          </ul>
+        </li>
+      <% end %>
+    </ul><!-- /.sidebar-menu -->
+  </section>
+  <!-- /.sidebar -->
+</aside>

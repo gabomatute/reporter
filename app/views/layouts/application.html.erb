@@ -1,14 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Reporter</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'%>
+  <%= stylesheet_link_tag 'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'%>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<%= yield %>
+<body class="skin-blue sidebar-mini <%= params[:controller].parameterize %> <%= action_name %>">
+  <div class="wrapper">
 
+    <%= render partial: 'layouts/application/header' %>
+
+    <%= render partial: 'layouts/application/sidebar' %>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <%= yield :header %>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-xs-12">
+            <% if notice %>
+              <div class="alert alert-success alert-dismissable">
+                <i class="fa fa-check"></i>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <b><%= notice %></b>
+              </div>
+            <% end %>
+
+            <% if alert %>
+              <div class="alert alert-danger alert-dismissable">
+                <i class="fa fa-ban"></i>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <b><%= alert %></b>
+              </div>
+            <% end %>
+          </div>
+
+        <!-- View content -->
+          <%= yield %>
+        </div>
+          
+
+      </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+
+    <%= render partial: 'layouts/application/footer' %>
+
+  </div><!-- ./wrapper -->
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

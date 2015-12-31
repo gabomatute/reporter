@@ -1,0 +1,16 @@
+<% content_for :header do %>
+  <section class="content-header">
+    <h1>
+      Database
+      <small>Edit</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/admin"><i class="fa fa-home"></i></a></li>
+      <li><%= link_to "Databases", admin_databases_path %></li>
+      <li><%= link_to 'Show', [:admin, @database] %></li>
+      <li class="active">Edit</li>
+    </ol>
+  </section>
+<% end %>
+
+<%= render 'form' %>

@@ -1,0 +1,105 @@
+<% content_for :header do %>
+  <section class="content-header">
+    <h1>
+      Report Type
+      <small><%= @report_type.name %></small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/admin"><i class="fa fa-home"></i></a></li>
+      <li><%= link_to "Report Types", admin_report_types_path %></li>
+      <li class="active">Show</li>
+    </ol>
+  </section>
+<% end %>
+
+<div class="col-md-4">
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Details</h3>
+      <div class="box-tools">
+        <!-- Buttons, labels, and many other things can be placed here! -->
+        <!-- Here is a label for example -->
+        <%= link_to edit_admin_report_type_path(@report_type) do %>
+          <button class="btn btn-box-tool">
+            <i class="fa fa-edit default"></i>
+          </button>
+        <% end %>
+      </div><!-- /.box-tools -->
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+      <table class="table table-bordered table-hover">
+        <tr>
+          <th><%= :name.to_s.humanize %></th>
+          <td><%= @report_type.name %></td>
+        </tr>
+        <% [:category, :database].each do |association| %>
+          <tr>
+            <th><%= association.to_s.humanize %></th>
+            <td><%= @report_type.send(association).name %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <th><%= :description.to_s.humanize %></th>
+          <td><%= @report_type.description %></td>
+        </tr>
+      </table>
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
+</div>
+
+<% unless @report_type.fields.blank? %>
+  <div class="col-md-8">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Fields</h3>
+        <div class="box-tools">
+          <!-- Buttons, labels, and many other things can be placed here! -->
+          <!-- Here is a label for example -->
+          <%= link_to edit_admin_report_type_path(@report_type) do %>
+            <button class="btn btn-box-tool">
+              <i class="fa fa-edit default"></i>
+            </button>
+          <% end %>
+        </div><!-- /.box-tools -->
+      </div><!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-bordered table-hover">
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Placeholder</th>
+          </tr>
+          <% @report_type.fields.each do |field| %>
+            <tr>
+              <td><%= field.name %></td>
+              <td><%= field.field_type.name %></td>
+              <td><%= field.required.to_s.humanize %></td>
+              <td><%= field.placeholder %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+  </div>
+<% end %>
+
+<div class="col-xs-12">
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Base SQL</h3>
+      <div class="box-tools">
+        <!-- Buttons, labels, and many other things can be placed here! -->
+        <!-- Here is a label for example -->
+        <%= link_to edit_admin_report_type_path(@report_type) do %>
+          <button class="btn btn-box-tool">
+            <i class="fa fa-edit default"></i>
+          </button>
+        <% end %>
+      </div><!-- /.box-tools -->
+    </div><!-- /.box-header -->
+    <div class="box-body">
+      <%= @report_type.sql %>
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
+</div>
