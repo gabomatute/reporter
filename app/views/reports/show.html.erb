@@ -1,31 +1,95 @@
-<h1>Report: <%= @report.report_type.name %></h1>
-
-<% @report.field_inputs.each do |field_input| %>
-	<p>
-		<strong><%= field_input.field.name %>:</strong>
-		<%= field_input.input %>
-	</p>
+<% content_for :header do %>
+  <section class="content-header">
+    <h1>
+      Report
+      <small><%= @report.report_type.name %></small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/"><i class="fa fa-home"></i></a></li>
+      <li><%= link_to "New Report", select_reports_path %></li>
+      <li class="active">Generate</li>
+    </ol>
+  </section>
 <% end %>
 
-<table>
-	<thead>
-		<tr>
-			<% @report.data.columns.each do |header| %>
-				<th><%= header %></th>
-			<% end %>
-		</tr>
-	</thead>
+<div class="col-md-6">
+  <div class="box collapsed-box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Type</h3>
+      <div class="box-tools pull-right">
+        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+      </div><!-- /.box-tools -->
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+      <table class="table table-bordered table-hover">
+        <tr>
+          <th>Name</th>
+          <td><%= @report.report_type.name %></td>
+        </tr>
+        <tr>
+          <th>Description</th>
+          <td><%= @report.report_type.description %></td>
+        </tr>
+      </table>
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
+</div>
 
-	<tbody>
-		<% @report.data.rows.each do |row| %>
-			<tr>
-				<% row.each do |data| %>
-					<td><%= data %></td>
-				<% end %>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<% unless @report.field_inputs.blank? %>
+  <div class="col-md-6">
+    <div class="box collapsed-box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Request</h3>
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+        </div><!-- /.box-tools -->
+      </div><!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-bordered table-hover">
+          <% @report.field_inputs.each do |field_input| %>
+            <tr>
+              <th><%= field_input.field.name %></th>
+              <td><%= field_input.input %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+  </div>
+<% end %>
 
-<%= link_to 'Back', select_reports_path %> |
-<%= link_to 'CSV', reports_path(report: @report.serializable_hash, format: :csv), method: :post %>
+<div class="col-xs-12">
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Data</h3>
+      <div class="box-tools pull-right">
+        <!-- Buttons, labels, and many other things can be placed here! -->
+        <!-- Here is a label for example -->
+        <%= link_to reports_path(report: @report.serializable_hash, format: :csv), method: :post do %>
+          <button class="btn btn-box-tool">CSV</button>
+        <% end %>
+      </div><!-- /.box-tools -->
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <% @report.data.columns.each do |header| %>
+              <th><%= header %></th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @report.data.rows.each do |row| %>
+            <tr>
+              <% row.each do |data| %>
+                <td><%= data %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
+</div>

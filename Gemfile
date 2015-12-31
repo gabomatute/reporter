@@ -41,6 +41,8 @@ gem 'devise'
 # Use attr_encrypted to encrypt database authentication. Read more: https://github.com/attr-encrypted/attr_encrypted
 gem 'attr_encrypted'
 
+gem 'adminlte2-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
