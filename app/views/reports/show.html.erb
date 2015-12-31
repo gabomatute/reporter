@@ -1,0 +1,31 @@
+<h1>Report: <%= @report.report_type.name %></h1>
+
+<% @report.field_inputs.each do |field_input| %>
+	<p>
+		<strong><%= field_input.field.name %>:</strong>
+		<%= field_input.input %>
+	</p>
+<% end %>
+
+<table>
+	<thead>
+		<tr>
+			<% @report.data.columns.each do |header| %>
+				<th><%= header %></th>
+			<% end %>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @report.data.rows.each do |row| %>
+			<tr>
+				<% row.each do |data| %>
+					<td><%= data %></td>
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to 'Back', select_reports_path %> |
+<%= link_to 'CSV', reports_path(report: @report.serializable_hash, format: :csv), method: :post %>

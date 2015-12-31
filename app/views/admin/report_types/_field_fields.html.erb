@@ -1,0 +1,19 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :field_type_id %>
+    <%= f.collection_select(:field_type_id, FieldType.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label :required %>
+    <%= f.check_box :required %>
+  </div>
+  <div class="field">
+    <%= f.label :placeholder %>
+    <%= f.text_field :placeholder %>
+  </div>
+  <%= link_to_remove_association "Delete", f %>
+</div>

@@ -11,3 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore local environment variables configuration.
+/config/local_env.yml

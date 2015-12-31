@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+
+  root 'reports#select'
+
+  namespace :admin do
+    root 'report_types#index'
+
+    resources :report_types, :databases, :categories
+  end
+
+  resources :reports, only: [:new, :create] do
+    get 'select', on: :collection
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
